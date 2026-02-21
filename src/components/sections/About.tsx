@@ -1,5 +1,6 @@
 import LetterGlitch from "@/components/LetterGlitch";
 import GradientText from "@/components/GradientText";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { motion } from "motion/react";
 
 export function About() {
@@ -34,17 +35,17 @@ export function About() {
             <p>
               I'm 15 and I've been building stuff on the web for as long as I can remember.
               I love jumping between crafting UIs with{" "}
-              <span className="text-emerald-400 font-medium">React</span> and{" "}
-              <span className="text-emerald-400 font-medium">TypeScript</span>, then switching
+              <LinkPreview url="https://react.dev" className="text-emerald-400 font-medium">React</LinkPreview> and{" "}
+              <LinkPreview url="https://www.typescriptlang.org" className="text-emerald-400 font-medium">TypeScript</LinkPreview>, then switching
               over to backends with{" "}
-              <span className="text-emerald-400 font-medium">Node.js</span> and{" "}
-              <span className="text-emerald-400 font-medium">Python</span>. The whole stack
+              <LinkPreview url="https://nodejs.org" className="text-emerald-400 font-medium">Node.js</LinkPreview> and{" "}
+              <LinkPreview url="https://www.python.org" className="text-emerald-400 font-medium">Python</LinkPreview>. The whole stack
               is my playground honestly.
             </p>
             <p>
               I'm also really into{" "}
-              <span className="text-emerald-400 font-medium">cloud infrastructure</span> and{" "}
-              <span className="text-emerald-400 font-medium">DevOps</span>. I run my own
+              <LinkPreview url="https://aws.amazon.com" className="text-emerald-400 font-medium">cloud infrastructure</LinkPreview> and{" "}
+              <LinkPreview url="https://github.com/features/actions" className="text-emerald-400 font-medium">DevOps</LinkPreview>. I run my own
               infra projects and love optimizing everything from database queries to
               deployment pipelines. If it can be automated, I'm automating it.
             </p>
