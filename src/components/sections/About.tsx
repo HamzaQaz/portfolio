@@ -44,14 +44,13 @@ export function About() {
             </p>
             <p>
               I'm also really into{" "}
-              <LinkPreview url="https://aws.amazon.com" className="text-emerald-400 font-medium">cloud infrastructure</LinkPreview> and{" "}
-              <LinkPreview url="https://github.com/features/actions" className="text-emerald-400 font-medium">DevOps</LinkPreview>. I run my own
-              infra projects and love optimizing everything from database queries to
+              <LinkPreview url="https://www.cloudflare.com" className="text-emerald-400 font-medium">cloud infrastructure</LinkPreview> and{" "}
+              <LinkPreview url="https://github.com/features/actions" className="text-emerald-400 font-medium">DevOps</LinkPreview>. I love n8n 
+              and love optimizing everything from database queries to
               deployment pipelines. If it can be automated, I'm automating it.
             </p>
             <p>
-              Outside of code, you'll catch me gaming, watching motorsport, or nerding out
-              about the latest tech and films.
+              Outside of code, you'll catch me gaming, watching f1, or playing tennis, pickleball.
             </p>
           </motion.div>
 

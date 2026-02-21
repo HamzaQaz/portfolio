@@ -6,11 +6,11 @@ import { Code2, Server, Database, Cloud, Palette, Terminal } from "lucide-react"
 
 const skills = [
   { title: "Frontend", desc: "React, TypeScript, Next.js, Tailwind, Framer Motion", icon: Code2 },
-  { title: "Backend", desc: "Node.js, Express, Python, GraphQL, REST APIs", icon: Server },
-  { title: "Databases", desc: "PostgreSQL, MongoDB, Redis, Prisma, Drizzle", icon: Database },
-  { title: "Cloud & DevOps", desc: "AWS, Docker, CI/CD, GitHub Actions, Vercel", icon: Cloud },
-  { title: "UI/UX", desc: "Figma, Responsive Design, Accessibility, Design Systems", icon: Palette },
-  { title: "Tools", desc: "Git, Linux, VS Code, Neovim, Bash scripting", icon: Terminal },
+  { title: "Backend", desc: "Node.js, Express, Python, REST APIs", icon: Server },
+  { title: "Databases", desc: "PostgreSQL, MongoDB, Redis", icon: Database },
+  { title: "Cloud & DevOps", desc: "Docker, CI/CD, GitHub Actions, Vercel", icon: Cloud },
+  { title: "UI/UX", desc: "Responsive Design, Accessibility, Design Systems", icon: Palette },
+  { title: "Tools", desc: "Git, Linux, VS Code, Bash scripting", icon: Terminal },
 ];
 
 export function Skills() {
