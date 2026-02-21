@@ -102,11 +102,14 @@ export const LinkPreview = ({
           {children}
         </HoverCardPrimitive.Trigger>
 
+        <HoverCardPrimitive.Portal>
         <HoverCardPrimitive.Content
-          className="[transform-origin:var(--radix-hover-card-content-transform-origin)]"
+          className="[transform-origin:var(--radix-hover-card-content-transform-origin)] z-50"
           side="top"
           align="center"
           sideOffset={10}
+          collisionPadding={20}
+          avoidCollisions
         >
           <AnimatePresence>
             {isOpen && (
@@ -145,6 +148,7 @@ export const LinkPreview = ({
             )}
           </AnimatePresence>
         </HoverCardPrimitive.Content>
+        </HoverCardPrimitive.Portal>
       </HoverCardPrimitive.Root>
     </>
   );
