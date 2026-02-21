@@ -48,7 +48,7 @@ export function Hero() {
         </motion.div>
 
         <BlurText
-          text="Hey, I'm NightlyDev"
+          text="Hey, I'm Hamza Qazi"
           delay={100}
           animateBy="words"
           direction="top"
