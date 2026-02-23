@@ -1,9 +1,12 @@
-import { motion } from "motion/react";
-import { useRef, type MouseEvent } from "react";
-import { ArrowLeft, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
-import GradientText from "@/components/GradientText";
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { motion } from 'motion/react'
+import { useRef, type MouseEvent } from 'react'
+import { ArrowLeft, Heart } from 'lucide-react'
+import GradientText from '@/components/GradientText'
 
+export const Route = createFileRoute('/people')({
+  component: PeoplePage,
+})
 
 // ─── Customize your people here ───────────────────────────────────────────────
 // Each person can have a custom color gradient for their card.
@@ -11,77 +14,76 @@ import GradientText from "@/components/GradientText";
 // If omitted, defaults to emerald → blue.
 const people: Person[] = [
   {
-    name: "H4lf",
-    description: "The OG, the one who gave me the opertunity to show what I can do and the one who hosts this website. Absolute legend.",
-    colors: ["#3b82f6", "#34d399"], // blue → green
+    name: 'H4lf',
+    description: 'The OG, the one who gave me the opertunity to show what I can do and the one who hosts this website. Absolute legend.',
+    colors: ['#3b82f6', '#34d399'],
   },
   {
-    name: "stellarsqilin",
-    description: "Chill, Funny, and really easy to jumpscare",
-    colors: ["#7dd3fc", "#f0f9ff"], // light blue → white
+    name: 'stellarsqilin',
+    description: 'Chill, Funny, and really easy to jumpscare',
+    colors: ['#7dd3fc', '#f0f9ff'],
   },
   {
-    name: "akason1cc",
-    description: "Very Chill, love his roomate in his mic background, and is a great friend to have around.",
-    colors: ["#ef4444", "#22d3ee"], // red → aqua
+    name: 'akason1cc',
+    description: 'Very Chill, love his roomate in his mic background, and is a great friend to have around.',
+    colors: ['#ef4444', '#22d3ee'],
   },
   {
-    name: "potatoleo",
-    description: "Chill Valorant player, and is always down to play some games. he a potato but a good one.",
-    colors: ["#a16207", "#451a03"], // brown → dark brown
+    name: 'potatoleo',
+    description: 'Chill Valorant player, and is always down to play some games. he a potato but a good one.',
+    colors: ['#a16207', '#451a03'],
   },
   {
-    name: "SakuraBob",
-    description: "He just a bob",
-    colors: ["#f472b6", "#a855f7"], // pink → purple
+    name: 'SakuraBob',
+    description: 'He just a bob',
+    colors: ['#f472b6', '#a855f7'],
   },
-];
+]
 // ──────────────────────────────────────────────────────────────────────────────
 
 interface Person {
-  name: string;
-  description: string;
-  colors?: [string, string];
+  name: string
+  description: string
+  colors?: [string, string]
 }
 
 function PersonCard({ person, index }: { person: Person; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [c1, c2] = person.colors ?? ["#34d399", "#3b82f6"];
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [c1, c2] = person.colors ?? ['#34d399', '#3b82f6']
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    card.style.setProperty("--shine-x", `${(x / rect.width) * 100}%`);
-    card.style.setProperty("--shine-y", `${(y / rect.height) * 100}%`);
-  };
+    const card = cardRef.current
+    if (!card) return
+    const rect = card.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const rotateX = ((y - centerY) / centerY) * -6
+    const rotateY = ((x - centerX) / centerX) * 6
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
+    card.style.setProperty('--shine-x', `${(x / rect.width) * 100}%`)
+    card.style.setProperty('--shine-y', `${(y / rect.height) * 100}%`)
+  }
 
   const handleMouseLeave = () => {
-    const card = cardRef.current;
-    if (!card) return;
-    card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
-  };
+    const card = cardRef.current
+    if (!card) return
+    card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
+  }
 
-  // Derive rgba versions for subtle bg tints
   const hexToRgba = (hex: string, a: number) => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `rgba(${r},${g},${b},${a})`;
-  };
+    const r = parseInt(hex.slice(1, 3), 16)
+    const g = parseInt(hex.slice(3, 5), 16)
+    const b = parseInt(hex.slice(5, 7), 16)
+    return `rgba(${r},${g},${b},${a})`
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.1, ease: "easeOut" }}
+      transition={{ duration: 0.45, delay: index * 0.1, ease: 'easeOut' }}
     >
       <div
         ref={cardRef}
@@ -90,7 +92,7 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
         className="group relative rounded-2xl p-[1px] transition-all duration-300 ease-out cursor-default"
         style={{
           background: `linear-gradient(135deg, ${hexToRgba(c1, 0.2)}, ${hexToRgba(c2, 0.2)})`,
-          transformStyle: "preserve-3d",
+          transformStyle: 'preserve-3d',
         }}
       >
         {/* Gradient border glow on hover */}
@@ -98,7 +100,7 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
           className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
             background: `linear-gradient(135deg, ${c1}, ${c2}, ${c1})`,
-            filter: "blur(1px)",
+            filter: 'blur(1px)',
           }}
         />
 
@@ -107,7 +109,7 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
           className="absolute -inset-1.5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
           style={{
             background: `linear-gradient(135deg, ${hexToRgba(c1, 0.25)}, ${hexToRgba(c2, 0.25)})`,
-            filter: "blur(20px)",
+            filter: 'blur(20px)',
           }}
         />
 
@@ -117,7 +119,7 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
           <div
             className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             style={{
-              background: "radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255,255,255,0.07) 0%, transparent 60%)",
+              background: 'radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(255,255,255,0.07) 0%, transparent 60%)',
             }}
           />
 
@@ -134,13 +136,13 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
               style={{
                 background: `linear-gradient(135deg, ${hexToRgba(c1, 0.15)}, ${hexToRgba(c2, 0.15)})`,
                 borderColor: hexToRgba(c1, 0.2),
-                boxShadow: `0 0 0 0 transparent`,
+                boxShadow: '0 0 0 0 transparent',
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 16px ${hexToRgba(c1, 0.3)}`;
+                ;(e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 16px ${hexToRgba(c1, 0.3)}`
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 0 0 transparent`;
+                ;(e.currentTarget as HTMLDivElement).style.boxShadow = '0 0 0 0 transparent'
               }}
             >
               <span
@@ -159,17 +161,17 @@ function PersonCard({ person, index }: { person: Person; index: number }) {
             <Heart
               className="w-4 h-4 shrink-0 mt-1 transition-all duration-300 group-hover:scale-110"
               style={{ color: hexToRgba(c1, 0.3) }}
-              onMouseEnter={(e) => { (e.currentTarget as SVGSVGElement).style.color = c1; }}
-              onMouseLeave={(e) => { (e.currentTarget as SVGSVGElement).style.color = hexToRgba(c1, 0.3); }}
+              onMouseEnter={(e) => { ;(e.currentTarget as SVGSVGElement).style.color = c1 }}
+              onMouseLeave={(e) => { ;(e.currentTarget as SVGSVGElement).style.color = hexToRgba(c1, 0.3) }}
             />
           </div>
         </div>
       </div>
     </motion.div>
-  );
+  )
 }
 
-export default function People() {
+function PeoplePage() {
   return (
     <div className="relative z-10 px-6 sm:px-8 md:px-16 lg:px-24 py-10 sm:py-16">
       <div className="max-w-4xl mx-auto">
@@ -199,9 +201,9 @@ export default function People() {
             My People
           </p>
           <h1 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4">
-            Favourite{" "}
+            Favourite{' '}
             <GradientText
-              colors={["#34d399", "#6ee7b7", "#3b82f6", "#34d399"]}
+              colors={['#34d399', '#6ee7b7', '#3b82f6', '#34d399']}
               animationSpeed={4}
               className="inline"
             >
@@ -222,5 +224,5 @@ export default function People() {
         </div>
       </div>
     </div>
-  );
+  )
 }

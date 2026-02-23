@@ -1,6 +1,7 @@
 import BlurText from "@/components/BlurText";
 import FaultyTerminal from "@/components/FaultyTerminal";
 import ShinyText from "@/components/ShinyText";
+import ClientOnly from "@/components/ClientOnly";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Github, Mail, Mouse } from "lucide-react";
 import { useRef } from "react";
@@ -17,18 +18,20 @@ export function Hero() {
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center px-8 md:px-16 lg:px-24 overflow-hidden">
       <motion.div className="absolute inset-0" style={{ opacity: bgOpacity }}>
-        <FaultyTerminal
-          tint="#34d399"
-          scale={1.2}
-          timeScale={0.3}
-          brightness={0.6}
-          glitchAmount={0.5}
-          flickerAmount={0.3}
-          scanlineIntensity={0.2}
-          curvature={0.1}
-          mouseReact={true}
-          mouseStrength={0.15}
-        />
+        <ClientOnly>
+          <FaultyTerminal
+            tint="#34d399"
+            scale={1.2}
+            timeScale={0.3}
+            brightness={0.6}
+            glitchAmount={0.5}
+            flickerAmount={0.3}
+            scanlineIntensity={0.2}
+            curvature={0.1}
+            mouseReact={true}
+            mouseStrength={0.15}
+          />
+        </ClientOnly>
       </motion.div>
 
       <div className="relative z-10 max-w-4xl w-full text-center">

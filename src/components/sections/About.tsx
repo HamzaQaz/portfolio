@@ -1,5 +1,6 @@
 import LetterGlitch from "@/components/LetterGlitch";
 import GradientText from "@/components/GradientText";
+import ClientOnly from "@/components/ClientOnly";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { motion } from "motion/react";
 
@@ -61,14 +62,16 @@ export function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="rounded-2xl border border-neutral-800/50 overflow-hidden min-h-[300px]"
           >
-            <LetterGlitch
-              glitchColors={["#2b4539", "#34d399", "#059669"]}
-              glitchSpeed={50}
-              centerVignette={false}
-              outerVignette={true}
-              smooth={true}
-              characters="NIGHTLYDEV/>_01"
-            />
+            <ClientOnly>
+              <LetterGlitch
+                glitchColors={["#2b4539", "#34d399", "#059669"]}
+                glitchSpeed={50}
+                centerVignette={false}
+                outerVignette={true}
+                smooth={true}
+                characters="NIGHTLYDEV/>_01"
+              />
+            </ClientOnly>
           </motion.div>
         </div>
       </div>

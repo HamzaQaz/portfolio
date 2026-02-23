@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
+  plugins: [
+    tailwindcss(),
+    tsconfigPaths(),
+    tanstackStart(),
+    viteReact(),
+  ],
+  ssr: {
+    noExternal: ['motion', 'framer-motion', 'motion-dom', 'motion-utils'],
   },
 })
